@@ -38,8 +38,10 @@ $childrenAges=$text[10];
 $childrenAges = explode("~", $childrenAges);
 
 echo '*Availability Request* 
+```
 ';
 $xml = '<availabilityRQ xmlns="http://www.hotelbeds.com/schemas/messages" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<debug><showProviderDetails>Y</showProviderDetails></debug>
 	<stay checkIn="'.$checkin.'" checkOut="'.$checkout.'" />
 	<occupancies>
 		<occupancy rooms="'.$numberOfRooms.'" adults="'.$numberOfAdults.'" children="'.$numberOfChildren.'">
@@ -61,8 +63,9 @@ $xml .='
 echo $xml;
 
 echo '
+```
 *Availability Response* 
->';
+```';
 
 try
 {	
@@ -84,10 +87,12 @@ try
 		switch ($http_code = curl_getinfo($curl, CURLINFO_HTTP_CODE)) {
 			case 200:  # OK
 				echo $resp;
+				echo "```";
 				break;
 			default:
 				//echo 'Unexpected HTTP code: ', $http_code, "\n";
 				echo $resp;
+				echo "```";
 		}
 	}
 	
